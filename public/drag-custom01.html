@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background-color: #ccc;
+        border: 1px solid #000000;
+        left: 0px;
+        top: 0px;
+    }
+
+    .ball {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: aqua;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+        user-select: none;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="ball">1</div>
+        <div class="ball my-draggable" style="left:70px; background-color:aquamarine;">2</div>
+        <div class="ball my-draggable" style="left:140px; background-color:khaki;">3</div>
+    </div>
+
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <script>
+
+        const box = $(".box");
+        //拖拉的對象
+        let dragTarget = {
+            t: null,
+            dx: 0,
+            dy: 0,
+        };
+
+        const MDown = function (event) {
+            const t = $(event.target);
+            console.log('t:', t);
+            if (t.hasClass('my-draggable')) {
+                box.append(t);
+                dragTarget.t = t;
+                dragTarget.dx = event.offsetX;
+                dragTarget.dy = event.offsetY;
+
+                console.log(dragTarget);
+                box.on('mousemove', MMove);
+            }
+        };
+
+        const MUp = function (event) {
+            dragTarget.t = null;
+            box.off('mousemove', MMove);
+        };
+        const MMove = function (event) {
+            if (!dragTarget.t) return;
+            dragTarget.t.css({
+                left: event.pageX - dragTarget.dx + 'px',
+                top: event.pageY - dragTarget.dy + 'px',
+            });
+        };
+        box.on('mousedown', MDown);
+        $(window).on('mouseup', MUp);
+    </script>
+</body>
+
+</html>

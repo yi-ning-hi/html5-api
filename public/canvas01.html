@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myc" width="600" height="400"></canvas>
+
+    <script>
+        const myc = document.querySelector("#myc");
+        const cnt = myc.getContext("2d");
+
+        cnt.beginPath();
+        cnt.moveTo(50, 50);
+        cnt.lineTo(200, 300);
+        cnt.lineTo(400, 50);
+        cnt.strokeStyle = "black";
+        cnt.lineWidth = 20;
+        cnt.stroke();
+
+    </script>
+</body>
+
+</html>
