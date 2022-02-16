@@ -39,13 +39,13 @@
                         socket.addEventListener('close', myClose);
                     }
                     break;
-                case 'doClose': 
-                if (socket && socket.readyState === WebSocket.OPEN)
-                    socket.close();
-                    break;
-                    case 'doSend': 
+                case 'doClose':
                     if (socket && socket.readyState === WebSocket.OPEN)
-                    socket.send(msg.value);
+                        socket.close();
+                    break;
+                case 'doSend':
+                    if (socket && socket.readyState === WebSocket.OPEN)
+                        socket.send(msg.value);
                     break;
 
             }
