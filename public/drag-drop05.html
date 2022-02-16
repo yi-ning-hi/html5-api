@@ -23,6 +23,8 @@
     <script src="javascripts/jquery-3.6.0.min.js"></script>
     <script>
 
+        window.addEventListener('dragover',e=>e.preventDefault(),true);
+        window.addEventListener('drop',e=>e.preventDefault(),true);
         const box =$(".box");
 
         box.on("dragenter", function(event) {
@@ -32,11 +34,11 @@
             box.css({backgroundColor:'#cccccc'})
         });
         
-        box.on('dragover', function(event) {
-            event.preventDefault();
-        });
+        // box.on('dragover', function(event) {
+        //     event.preventDefault();
+        // });
         box.on('drop', function(event) {
-           event.preventDefault();
+        //    event.preventDefault();
            console.log(event.originalEvent.dataTransfer.files);
         });
     </script>
